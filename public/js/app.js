@@ -29,7 +29,16 @@ function Loan (client) {
     client.solde = client.solde + amountLoan
     alert("Loan successful! Your new balance is: " + client.solde)
 }
-
+function Invest(client) {
+    let amountInvest = prompt("entre the amount to you want invest")
+    if (amountInvest <= 0) {
+        amountInvest = prompt("Please enter a valid amount greater than 0.")
+    }else{
+        let soldeInvest = amountInvest * 0.2
+        client.solde = client.solde + soldeInvest
+        alert("Invest successful! Your new balance is: " + client.solde)
+    }
+}
 // prompt nswlo client achno bgha
 let inscription = prompt("Choose between signing up, logging in, or changing the password.").toLowerCase().trim();
 
@@ -105,6 +114,8 @@ if (inscription === "signing up") {
                 Deposit(finddata)
             }else if (action === "loan"){
                 Loan(finddata)
+            }else if (action === "invest"){
+                Invest(finddata)
             }
         } else if (inscriptionAfterSignUp === "changing the password") {
             let loginemail = prompt("Please enter your Email").trim().toLowerCase();
