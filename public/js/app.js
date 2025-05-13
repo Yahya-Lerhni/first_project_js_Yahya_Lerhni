@@ -1,5 +1,5 @@
 let DataBaseClient = []; // array npushiw fih object 
-// function dyal whithdraw 
+// function dyal whithdraw ==> sahb lfloos
 function withdraw(client) {
     let amount = parseFloat(prompt("Enter the amount you want to withdraw:"))
 
@@ -12,6 +12,7 @@ function withdraw(client) {
         alert("Withdrawal successful! Your new solde is: " + client.solde)
     }
 }
+// function dyal deposit ==> nhato floos
 function Deposit(client) {
     let amountDeposit = parseFloat(prompt("Enter the amount you want to deposit:"));
     
@@ -24,11 +25,14 @@ function Deposit(client) {
         alert("Deposit successful! Your new balance is: " + client.solde)
     }
 }
+// function dyal loan  ==> nakhdo credit
 function Loan (client) {
     let amountLoan = client.solde * 0.2
     client.solde = client.solde + amountLoan
     alert("Loan successful! Your new balance is: " + client.solde)
 }
+// function dyal  invest  ==> nstatmro flfloos
+
 function Invest(client) {
     let amountInvest = prompt("entre the amount to you want invest")
     if (amountInvest <= 0) {
@@ -39,6 +43,8 @@ function Invest(client) {
         alert("Invest successful! Your new balance is: " + client.solde)
     }
 }
+// function dyal log out  ==> nkhorjo mn sysytem
+
 function LogOut (client){
     alert("you exit the system")
 }
@@ -48,6 +54,7 @@ let inscription = prompt("Choose between signing up, logging in, or changing the
 // etap dyal sign up
 if (inscription === "signing up") {
     let client = {}; // declariw object fih properties dyal client
+    // entre name
     let Name = prompt("Please enter your full name (min 5 letters, no numbers and symbols):").trim();
     if (Name.length >= 5 && !/[@#\-+*/"$%^&*()=~><!0-9]/.test(Name)) {
         let FullName = Name.split(" ").filter(e => e).map(e => e.charAt(0).toUpperCase() + e.substring(1).toLowerCase()).join(" ");
@@ -56,7 +63,7 @@ if (inscription === "signing up") {
     } else {
         alert("Your name is invalid. Please try again and respect the condition.");
     }
-
+// entre email
     let email = prompt("Please enter your email").trim();
     if (email.length >= 10 && email.includes("@") && !email.includes(" ") && email.split("@").length === 2) {
         let Email = email.toLowerCase();
@@ -65,7 +72,7 @@ if (inscription === "signing up") {
     } else {
         email = prompt("Your email is invalid. Please try again and respect the condition.");
     }
-
+//entre age
     let age = prompt("Enter your age (max 2 digits)").trim();
     if (age.length > 0 && age.length <= 2 && !/\D/.test(age)) {
         client.Age = age;
@@ -73,7 +80,7 @@ if (inscription === "signing up") {
     } else {
         age = prompt("Your age is invalid. Please try again and respect the condition.");
     }
-
+//entre password
     let password = prompt("Enter your password (min 7 characters, use symbols and numbers)").trim();
     if (password.length >= 7 && /[@#\-+*/]/.test(password) && /[0-9]/.test(password) && !password.includes(" ")) {
         client.Password = password;
@@ -81,27 +88,27 @@ if (inscription === "signing up") {
     } else {
         password = prompt("Your password is invalid. Please try again and respect the condition.");
     }
-
+// confirm password
     let confirmpassword = prompt("Confirm your password");
     if (password === confirmpassword) {
         alert("Your password is correct");
     } else {
         confirmpassword = prompt("Password incorrect, please try again");
     }
-    client.solde = 500
+    client.solde = 500 // ndeclariw wahd properties jdid lclient nhato fih solde
 
     if (client.FullName && client.Email && client.Age && client.Password && password === confirmpassword) {
         DataBaseClient.push(client);
         alert("Your account has been created successfully! Your sold is " + client.solde);
-
+// prompt jdid bach ndozo mn sign up l login
         let inscriptionAfterSignUp = prompt("Choose between logging in, or changing the password.").toLowerCase().trim();
-
+// etap 2 login
         if (inscriptionAfterSignUp === "logging in") {
             let loginemail = prompt("Please enter your Email").trim().toLowerCase();
             let loginpassword = prompt("Please enter your Password").trim();
-
+// decalriw wahd variable nt2akdo wach bsh tstorat 3ndna data f databaseclient
             let finddata = DataBaseClient.find(e => e.Email === loginemail && e.Password === loginpassword);
-
+// nt2akdo wach email w password tstoraw 3ndna
             while (!finddata) {
                 alert("Incorrect email or password. Please try again.");
                 loginemail = prompt("Please enter your Email").trim().toLowerCase();
@@ -110,7 +117,9 @@ if (inscription === "signing up") {
             }
 
             alert("Login successful! Welcome " + finddata.FullName);
+// prompt jdid mn b3d mat2akdna bli data 3ndna ngolo user chno opperation libgha
             let action = prompt("Choose an action: Withdraw, Deposit, Loan, Invest, Transaction History, Log out").toLowerCase().trim();
+// nkhdmo bles functions mn ba3d ma creeanhom
             if (action === "withdraw") {
                 withdraw(finddata);
             }else if (action === "deposit"){
@@ -122,6 +131,7 @@ if (inscription === "signing up") {
             }else{
                 LogOut(finddata)
             }
+// etap 3 confirm password 
         } else if (inscriptionAfterSignUp === "changing the password") {
             let loginemail = prompt("Please enter your Email").trim().toLowerCase();
             let loginpassword = prompt("Please enter your Password").trim();
@@ -152,5 +162,6 @@ if (inscription === "signing up") {
         }
     }
 }
+// logiw data base dyal client mn ba3d had opperaton li drna
 console.log(DataBaseClient);
 
