@@ -39,6 +39,9 @@ function Invest(client) {
         alert("Invest successful! Your new balance is: " + client.solde)
     }
 }
+function LogOut (client){
+    alert("you exit the system")
+}
 // prompt nswlo client achno bgha
 let inscription = prompt("Choose between signing up, logging in, or changing the password.").toLowerCase().trim();
 
@@ -116,6 +119,8 @@ if (inscription === "signing up") {
                 Loan(finddata)
             }else if (action === "invest"){
                 Invest(finddata)
+            }else{
+                LogOut(finddata)
             }
         } else if (inscriptionAfterSignUp === "changing the password") {
             let loginemail = prompt("Please enter your Email").trim().toLowerCase();
